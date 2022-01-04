@@ -6,7 +6,7 @@ trigger:
 #- main
   branches:
     include:
-    - Piepline-creation
+    - Pipeline-creation
 
 pool:
   vmImage: 'ubuntu-latest'
