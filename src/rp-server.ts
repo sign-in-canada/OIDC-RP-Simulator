@@ -120,6 +120,22 @@ export class ServerExpress {
 
     app.get('/error', (req, res) => res.status(500).render('error', {err: req.query.error}));
     
+    app.get('/login', (req , res) => {
+      res.set('content-type', 'text/html;charset=UTF-8')
+      return res.status(200).send(`
+        <html xmlns="http://www.w3.org/1999/xhtml">
+          <script type="text/javascript">
+            function redirectToLoginPage() {
+              const locale = localStorage.getItem('ui_locales');
+              const language = (locale ? locale.substring(0,2) : 'undefined');
+              window.location.replace("/rpsim/login/" + language);
+            }
+          </script>
+          <body onload="redirectToLoginPage()"/>
+        </html>`
+      )
+    });
+
     app.get('/logout/:locale(en|fr)?', (req: RequestWithUserSession, res) => {
       const provider = req.session.provider
 
