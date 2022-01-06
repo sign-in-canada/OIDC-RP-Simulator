@@ -27,5 +27,5 @@ steps:
 
 - script: |
     #CI=true npm run test-junit -- --grep @noauth
-    npm run test-envc
+    npm run test
   displayName: 'Run tests'

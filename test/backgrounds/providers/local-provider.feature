@@ -1,7 +1,7 @@
-Set openid provider to http://localhost:3000
-Set openid provider login to http://localhost:3000/login
+Set openid provider to https://oidc-provider.id.alpha.canada.ca
+Set openid provider login to https://oidc-provider.id.alpha.canada.ca/login
 Set username to input[name=login]
 Set password to input[name=password]
 Set Sign-in to button[type=submit]
 Set Continue to button[type=submit]
-Set openid provider interaction page to http://localhost:3000/interaction/.*
+Set openid provider interaction page to https://oidc-provider.id.alpha.canada.ca/interaction/.*
