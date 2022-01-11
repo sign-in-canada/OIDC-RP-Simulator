@@ -21,7 +21,7 @@ This tests that the local provider and RP are listening, logs in, then logs out.
 The local provider will accept any username and pasword for this test.
 
     When I click on debug
-    Then I should see "client_id: 'client1'" 
+    Then I should see "client_id: 'oidc1'" 
     And I should see "ui_locales: 'en-CA'" 
     And I should see "max_age: '1400'" 
 
