@@ -1,104 +1,113 @@
 <!DOCTYPE html>
-
 <html lang="<%= lang %>">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="schema.dcterms" href="http://purl.org/dc/terms/">
-	<title><%= content_ltitle %></title>
-	
-	<!-- Favicon (optional) begins / Début du favicon (optionnel) -->
-	<link rel="shortcut icon" href="/images/favicon.ico">
-	<!-- Favicon (optional) ends / Find du favicon (optionnel) -->
+<%- include('head')-%>
 
-	<link href="/css/base.css" rel="stylesheet" type="text/css">
-	<link href="/css/util.css" rel="stylesheet" type="text/css">
-	<link href="/css/theme-clf2-nsi2.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" media="all" href="/css/style.css">
-	<link href="/css/theme-cats.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="/javascript/utils.js"></script>
-</head>
-<body onload="setOptionsValues()">
-<!-- Two column layout begins / Début de la mise en page de deux colonnes -->
-<div id="cn-body-inner-2col">
-	<div id="cn-head"><div id="cn-head-inner">
-	<header>
-	<!-- clf2-nsi2 theme begins / Début du thème clf2-nsi2 -->
+<body vocab="http://schema.org/" typeof="WebPage" class="page-home">
 	<%- include('header')-%>
-	<!-- clf2-nsi2 theme ends / Fin du thème clf2-nsi2 -->
-	</header>
-	</div></div>
-	<!-- Header ends / Fin de l'en-tête -->
+	<main property="mainContentOfPage" class="container">
+		<div class="row profile">
+			<div class="col-md-12">
+				<h1 property="name" id="wb-cont"><%= title_r %> (<%= ui_config.client_label %>)</h1>
+			</div>
+		</div>
+		<br>
+		<div class="row profile">
+			<section class="col-md-12">
+				<% if ( !isLoggedIn ) {%>
+					<section class="alert alert-danger">
+						<p><%= expired_session_error %>.</p>
+					</section>				
+				<%} else {%>
+				<div class="wb-tabs">
+					<div class="tabpanels">
+						<details id="details-panel1" open="open">
+							<summary><%= auth_request_params %></summary>
+							<% if ( reqParams != null ) {%>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col" class="col-sm-4"><%= parameter %></th>
+										<th scope="col" class="col-sm-8"><%= value %></th>
+									</tr>
+								</thead>
+								<tbody>
+									<% Object.keys(reqParams).forEach((key) => { %>
+									<tr>
+										<td><%= key %></td> <td><%= reqParams[key] %></td>
+									</tr>
+									<% }) %>
+								</tbody>
+							</table>
+							<%}%>
+						</details>
+						<details id="details-panel2">
+							<summary><%= userinfo_label %></summary>
+							<% if ( userinfo != null ) {%>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col" class="col-sm-4"><%= parameter %></th>
+										<th scope="col" class="col-sm-8"><%= value %></th>
+									</tr>
+								</thead>
+								<tbody>
+									<% Object.keys(userinfo).forEach((key) => { %>
+									<tr>
+										<td><%= key %></td> <td><%= userinfo[key] %></td>
+									</tr>
+									<% }) %>
+								</tbody>
+							</table>
+							<%}%>
+						</details>
+						<details id="details-panel3">
+							<summary><%= claims_label %></summary>
+							<% if ( user != null ) {%>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col" class="col-sm-4"><%= parameter %></th>
+										<th scope="col" class="col-sm-8"><%= value %></th>
+									</tr>
+								</thead>
+								<tbody>
+									<% Object.keys(user).forEach((key) => { %>
+									<tr>
+										<td><%= key %></td> <td><%= user[key] %></td>
+									</tr>
+									<% }) %>
+								</tbody>
+							</table>
+							<%}%>
+						</details>
+						<details id="details-panel4">
+							<summary><%= tokenSet_label %></summary>
+							<% if ( tokenSet != null ) {%>
+							<table class="table table-striped" style="table-layout: fixed;">
+								<thead>
+									<tr>
+										<th scope="col" class="col-sm-4"><%= parameter %></th>
+										<th scope="col" class="col-sm-8"><%= value %></th>
+									</tr>
+								</thead>
+								<tbody>
+									<% Object.keys(tokenSet).forEach((key) => { %>
+									<tr style="word-wrap: break-word;">
+										<td><%= key %></td> <td><%= tokenSet[key] %></td>
+									</tr>
+									<% }) %>
+								</tbody>
+							</table>
+							<%}%>
+						</details>
+					</div>
+				</div>
+				<%}%>
+			</section>
+		</div>
+		</div>
+		<%- include('preFooter')-%>
+	</main>
 
-	<div id="cn-cols">
-	<!-- Main content begins / Début du contenu principal --> 
-	<div id="cn-centre-col-gap"></div>
-	<div id="cn-centre-col" role="main"><div id="cn-centre-col-inner">
-	<section>
-		<!-- Content title begins / Début du titre du contenu -->
-		<header>
-			<h1 id="cn-cont"><%= title_r %></h1>
-		</header>
-		<!-- Content Title ends / Fin du titre du contenu -->
-
-		<!-- clf2-nsi2 theme begins / Début du thème clf2-nsi2 -->
-		<section>
-			<h5><%= auth_request_params %></h5>
-			<table class="results"><tbody>
-				<% if ( reqParams != null ) {
-					Object.keys(reqParams).forEach((key) => { %>
-					<tr>
-						<td class="label"><%= key %>:</td> <td class="content"><%= reqParams[key] %></td>
-					</tr>
-				<% })}; %>
-			</tbody></table>
-		</section>
-		<section>
-			<h5><%= userinfo_label %></h5>
-			<table class="results"><tbody>
-				<% if ( userinfo != null ) {
-					Object.keys(userinfo).forEach((key) => { %>
-					<tr>
-						<td class="label"><%= key %>:</td> <td class="content"><%= userinfo[key] %></td>
-					</tr>
-				<% })}; %>
-			</tbody></table>
-		</section>
-		<section>
-			<h5><%= claims_label %></h5>
-			<table class="results"><tbody>
-				<% if ( user != null ) {
-					Object.keys(user).forEach((key) => { %>
-					<tr>
-						<td class="label"><%= key %>:</td> <td class="content"><%= user[key] %></td>
-					</tr>
-				<% })}; %>
-			</tbody></table>
-		</section>
-		<section>
-			<h5><%= tokenSet_label %></h5>
-			<table class="results"><tbody>
-				<% if ( tokenSet != null ) {
-					Object.keys(tokenSet).forEach((key) => { %>
-					<tr>
-						<td class="label"><%= key %>:</td> <td class="content"><%= tokenSet[key] %></td>
-					</tr>
-				<% })}; %>
-			</tbody></table>
-		</section>
-		<!-- clf2-nsi2 theme ends / Fin du thème clf2-nsi2 -->
-	</section>
-	</div></div>
-	<!-- Main content ends / Fin du contenu principal --> 
-	
-	<!-- Primary navigation (left column) begins / Début de la navigation principale (colonne gauche) -->
-	<%- include('navigation')-%>
-	<!-- Primary navigation (left column) ends / Fin de la navigation principale (colonne gauche) -->
-
-</div>
-	<!-- Footer begins / Début du pied de page --> 
 	<%- include('footer')-%>
-	<!-- Footer ends / Fin du pied de page -->
-</div>
-<!-- Two column layout ends / Fin de la mis en page de deux colonnes -->
-
 </body></html>

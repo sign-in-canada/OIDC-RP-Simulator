@@ -18,6 +18,7 @@ function setOptionsValues() {
     const prompt = localStorage.getItem('prompt');
     const nonce = localStorage.getItem('nonce');
     const login_hint = localStorage.getItem('login_hint');
+    const ui_locales = localStorage.getItem('ui_locales');
 
     if ( max_age ) document.getElementById('max_age').value = max_age;
     if ( acr_values ) document.getElementById('acr_values').value = acr_values;
@@ -26,13 +27,18 @@ function setOptionsValues() {
     if ( prompt ) document.getElementById('prompt').value = prompt;
     if ( nonce ) document.getElementById('nonce').checked = (nonce === 'true') ;
     if ( login_hint ) document.getElementById('login_hint').checked = (login_hint === 'true');
+    if ( ui_locales ) document.getElementById('ui_locales').checked = (ui_locales === 'true');
 
-    // store ui_locales
-    localStorage.setItem('ui_locales', window.location.toString().match(/fr$/) ? 'fr-CA' : 'en-CA');
+    // store lang_locale: for login page redirection purpose (to the right language)
+    localStorage.setItem('lang_locale', window.location.toString().match(/fr$/) ? 'fr-CA' : 'en-CA');
 }
 
 function storeVal(key, val) {	
     localStorage.setItem(key, val);
+}
+
+function clearValues() {	
+    localStorage.clear();
 }
 
 function checkExpiration () { 
@@ -60,7 +66,7 @@ function submitWithQueryString(obj) {
     cspUrl.searchParams.set('scope', scope.options[scope.selectedIndex].text);
     cspUrl.searchParams.set('prompt', prompt.options[prompt.selectedIndex].text);
     cspUrl.searchParams.set('max_age', max_age);
-    cspUrl.searchParams.set('ui_locales', window.location.toString().match(/fr$/) ? 'fr-CA' : 'en-CA');
+    if ( document.getElementById('ui_locales').checked ) cspUrl.searchParams.set('ui_locales', window.location.toString().match(/fr$/) ? 'fr-CA' : 'en-CA');
     if ( document.getElementById('nonce').checked ) cspUrl.searchParams.set('nonce', randomString(32));
     if ( document.getElementById('login_hint').checked ) cspUrl.searchParams.set('login_hint', randomString(32));
     if ( acr_values != '' ) cspUrl.searchParams.set('acr_values', acr_values);
