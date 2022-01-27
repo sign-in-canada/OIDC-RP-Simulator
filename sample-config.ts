@@ -6,6 +6,7 @@ export const oidc_clients = [
   {
     name: 'client1',
     description: 'CLEINT1 OIDC',
+    sic: false,
     ap: 'http://localhost:3000',
     config: {
       client_id: 'client1',
@@ -30,3 +31,12 @@ export const oidc_clients = [
     }
   },
 ]
+
+export const ui_config = {
+  client_label: 'RP1',
+  title_en: 'OIDC RP Simulator',
+  title_fr: 'Simulateur OIDC de la partie utilisatrice',
+  wet_cdts_hosturl: 'https://www.canada.ca/etc/designs/canada/cdts/gcweb', 
+  wet_cdts_version: 'v4_0_44',
+  jquery_version: '2.2.4'
+};

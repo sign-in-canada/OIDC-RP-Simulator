@@ -1,90 +1,71 @@
 <!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title><%= ui_config.title_en %> - <%= ui_config.title_fr %></title>
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<meta name="description" content="">
+		<meta name="dcterms.creator" content="Government of Canada, Treasury Board of Canada Secretariat, Office of the Chief Information Officer, Cyber Security">
+		<meta name="dcterms.creator" lang="fr" content="Gouvernement du Canada, Secrétariat du Conseil du Trésor du Canada, Bureau du dirigeant principal de l’information, cyber-sécurité">
+		<meta name="dcterms.title" content="<%= ui_config.title_en %>">
+		<meta name="dcterms.title" lang="fr" content="<%= ui_config.title_fr %>">
+		<meta name="dcterms.modified" title="W3CDTF" content="">
+		<meta name="dcterms.subject" title="scheme" content="Government of Canada, authentication">
+		<meta name="dcterms.subject" lang="fr" title="scheme" content="Gouvernement du Canada, authentication">
+		<meta name="dcterms.language" title="ISO639-2" content="eng">
+		<meta name="dcterms.language" lang="fr" title="ISO639-2" content="fra">
+		<meta name="robots" content="noindex, follow">
 
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
-	<link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+		<link href="<%= ui_config.wet_cdts_hosturl %>/<%= ui_config.wet_cdts_version %>/wet-boew/assets/favicon.ico" rel="icon" type="image/x-icon">
+		<link rel="stylesheet" href="<%= ui_config.wet_cdts_hosturl %>/<%= ui_config.wet_cdts_version %>/wet-boew/css/theme.min.css">
+		<link rel="stylesheet" href="<%= ui_config.wet_cdts_hosturl %>/<%= ui_config.wet_cdts_version %>/wet-boew/css/messages.min.css">
 
-	<title>SIC Canada OIDC - RP Simulator / Simulateur de la partie utilisatrice</title>
-	<link rel="shortcut icon" href="/images/favicon.ico">
-
-	<!-- WET scripts/CSS begin / DÃ©but des scripts/CSS de la BOEW --><!--[if IE 6]><![endif]-->
-	<link href="css/base.css" rel="stylesheet" type="text/css">
-	<link href="css/util.css" rel="stylesheet" type="text/css">
-<!-- clf2-nsi2 theme begins / DÃ©but du thÃ¨me clf2-nsi2 -->
-	<link href="css/wp-pa-theme-clf2-nsi2.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" media="all" href="css/style.css">
-
-	<!-- Custom scripts/CSS begin / DÃ©but des scripts/CSS personnalisÃ©s -->
-	<link href="css/theme-cats.css" rel="stylesheet" type="text/css">
-	<!-- Custom scripts/CSS end / Fin des scripts/CSS personnalisÃ©s -->
-
-</head>
-<body>
-<!-- One column layout begins / DÃ©but de la mise en page d'une colonne -->
-<div id="cn-body-inner-1col">
-	<!-- Header begins / DÃ©but de l'en-tÃªte -->
-	<div id="cn-head"><div id="cn-head-inner">
-	<header>
-<!-- clf2-nsi2 theme begins / DÃ©but du thÃ¨me clf2-nsi2 -->
-		<div id="cn-sig"><img src="images/sig-eng.gif" width="372" height="20" alt="Government of Canada / Gouvernement du Canada" title="Government of Canada / Gouvernement du Canada"></div>
-<!-- clf2-nsi2 theme ends / Fin du thÃ¨me clf2-nsi2 -->
-	</header>
-	</div></div>
-	<!-- Header ends / Fin de l'en-tÃªte -->
-
-	<div id="cn-cols">
-	<!-- Main content begins / DÃ©but du contenu principal -->
-	<div id="cn-centre-col" role="main"><div id="cn-centre-col-inner">
-	<section>
-		<!-- Content title begins / DÃ©but du titre du contenu -->
-		<header>
-			<h1 id="cn-cont">OIDC RP Simulator</h1>
-		</header>
-		<!-- Content Title ends / Fin du titre du contenu -->
-
-<!-- clf2-nsi2 theme begins / DÃ©but du thÃ¨me clf2-nsi2 -->
-		<!-- Message space begins / DÃ©but de l'espace de message -->
-		<div id="cn-msg-space" role="banner">
-			<div id="cn-upper-msg">
-			</div>
-			<div id="cn-lower-msg">
-				<p id="cn-left-msg">OIDC Relying Party Simulator</p>
-				<p id="cn-right-msg" lang="fr">Simulateur OIDC de la partie utilisatrice</p>
-			</div>
+		<noscript><link rel="stylesheet" href="<%= ui_config.wet_cdts_hosturl %>/<%= ui_config.wet_cdts_version %>/wet-boew/css/noscript.min.css" /></noscript>
+	</head>
+	<body class="splash" vocab="http://schema.org/" typeof="WebPage">
+		<div id="bg">
+			<img src="<%= ui_config.wet_cdts_hosturl %>/<%= ui_config.wet_cdts_version %>/wet-boew/assets/sp-bg-2.jpg" alt="Blurry mountains / Montagnes floues">
 		</div>
-		<!-- Message space ends / Fin de l'espace de message -->
 
-		<nav role="navigation">
-			<ul id="cn-ef-lang-links">
-				<li>
-				<a href="/rpsim/home/en" title="English - English version of the Web site">English</a>
-				</li>
-				<li lang="fr">
-				   <a href="/rpsim/home/fr" title="Français - Version français de ce site Web">Français</a>
-				</li>
-			</ul>
-		<div id="cn-wmms"><img src="images/wmms.gif" width="83" height="20" alt="Symbol of the Government of Canada / Symbole du gouvernement du Canada" title="Symbol of the Government of Canada / Symbole du gouvernement du Canada"></div>
-		</nav>
-<!-- clf2-nsi2 theme ends / Fin du thÃ¨me clf2-nsi2 -->
-	</section>
-	</div></div>
-	<!-- Main content ends / Fin du contenu principal -->
-	</div>
+		<main role="main">
+			<div class="sp-hb">
+				<div class="sp-bx col-xs-12">
+					<h1 property="name" class="wb-inv">Canada-ca</h1>
+					<div class="row">
+						<div class="col-xs-11 col-md-8">
+							<img src="<%= ui_config.wet_cdts_hosturl %>/<%= ui_config.wet_cdts_version %>/wet-boew/assets/sig-spl.svg" width="283" alt="Government of Canada / Gouvernement du Canada">
+						</div>
+					</div>
 
-	<!-- Footer begins / DÃ©but du pied de page -->
-	<div id="cn-foot"><div id="cn-foot-inner">
-	<footer>
-		<h2 id="cn-nav">Footer</h2>
-<!-- clf2-nsi2 theme begins / DÃ©but du thÃ¨me clf2-nsi2 -->
-		<ul id="cn-in-links">
-			<li><a href="#" rel="license">Important Notices</a></li>
-			<li lang="fr"><a href="#" rel="license">Avis importants</a></li>
-		</ul>
-<!-- clf2-nsi2 theme ends / Fin du thÃ¨me clf2-nsi2 -->
-	</footer>
-	</div></div>
-	<!-- Footer ends / Fin du pied de page -->
-</div>
-<!-- One column layout ends / Fin de la mis en page d'une colonne -->
+					<div class="row">
+						<section class="col-xs-6 text-right">
+							<h2 class="wb-inv"><%= ui_config.title_en %></h2>
+							<p><a href="/rpsim/login/en" class="btn btn-primary">English</a></p>
+						</section>
 
-</body></html>
+						<section class="col-xs-6" lang="fr">
+							<h2 class="wb-inv"><%= ui_config.title_fr %></h2>
+							<p><a href="/rpsim/login/fr" class="btn btn-primary">Français</a></p>
+						</section>
+					</div>
+				</div>
+
+				<div class="sp-bx-bt col-xs-12">
+					<div class="row">
+						<div class="col-xs-7 col-md-8">
+							<a href="https://www.canada.ca/en/transparency/terms.html" class="sp-lk">Terms and conditions</a> <span class="glyphicon glyphicon-asterisk"></span> <a href="https://www.canada.ca/fr/transparence/avis.html" class="sp-lk" lang="fr">Avis</a>
+						</div>
+
+						<div class="col-xs-5 col-md-4 text-right mrgn-bttm-md">
+              				<img src="<%= ui_config.wet_cdts_hosturl %>/<%= ui_config.wet_cdts_version %>/wet-boew/assets/wmms-blk.svg" alt="Symbol of the Government of Canada / Symbole du gouvernement du Canada"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/<%= ui_config.jquery_version %>/jquery.js"></script>
+		<script src="<%= ui_config.wet_cdts_hosturl %>/<%= ui_config.wet_cdts_version %>/wet-boew/js/wet-boew.min.js"></script>
+		<script src="<%= ui_config.wet_cdts_hosturl %>/<%= ui_config.wet_cdts_version %>/wet-boew/js/theme.min.js"></script>
+	</body>
+</html>

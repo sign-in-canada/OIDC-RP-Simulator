@@ -3,12 +3,12 @@ import createError from 'http-errors';
 import { Issuer } from 'openid-client';
 import expressSession from 'express-session';
 import passport from 'passport';
-import { oidc_clients, sessionSecret } from '../config';
+import { oidc_clients, sessionSecret, ui_config } from '../config';
 import { locales_en, locales_fr } from './locales/translations';
 
 import { OpenIDConnectStrategy } from './strategy';
 
-export const DEFAULT_PORT = 3100;
+export const DEFAULT_PORT = process.env.port || 8080;
 
 interface RequestWithUserSession extends express.Request {
   user?: any,
@@ -45,7 +45,7 @@ export class ServerExpress {
 
     setupStrategies();
 
-    app.get('/', (req, res) => res.render('index', {}));
+    app.get('/', (req, res) => res.render('index', {ui_config: ui_config}));
 
     app.get('/rpsim/:page/:lang', (req: RequestWithUserSession, res) => {
       let template
@@ -63,18 +63,16 @@ export class ServerExpress {
 
       let data = {
         ...template, 
-        'page': req.params.page,
+        page: req.params.page,
+        ui_config: ui_config,
         isLoggedIn: req.user != undefined
       }
 
       switch(req.params.page) {
-        case 'home':
-          res.render('home', data)
-          break;
         case 'login':
           data = {  
             ...data,
-            oidc_clients: oidc_clients.map((item) => { return {name: item.name, description: item.description} })
+            oidc_clients: oidc_clients.map((item) => { return {name: item.name, description: item.description, sic: item.sic} })
           }
           res.render('login', data)
           break;
@@ -89,7 +87,11 @@ export class ServerExpress {
           res.render('response', data)
           break;
         default:
-          res.render('home', data)
+          data = {  
+            ...data,
+            oidc_clients: oidc_clients.map((item) => { return {name: item.name, description: item.description} })
+          }
+          res.render('login', data)
       }
     });
 
@@ -120,6 +122,22 @@ export class ServerExpress {
 
     app.get('/error', (req, res) => res.status(500).render('error', {err: req.query.error}));
     
+    app.get('/login', (req , res) => {
+      res.set('content-type', 'text/html;charset=UTF-8')
+      return res.status(200).send(`
+        <html xmlns="http://www.w3.org/1999/xhtml">
+          <script type="text/javascript">
+            function redirectToLoginPage() {
+              const locale = localStorage.getItem('lang_locale');
+              const language = (locale ? locale.substring(0,2) : 'undefined');
+              window.location.replace("/rpsim/login/" + language);
+            }
+          </script>
+          <body onload="redirectToLoginPage()"/>
+        </html>`
+      )
+    });
+
     app.get('/logout/:locale(en|fr)?', (req: RequestWithUserSession, res) => {
       const provider = req.session.provider
 
