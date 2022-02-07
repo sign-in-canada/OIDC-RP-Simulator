@@ -64,8 +64,8 @@ function submitWithQueryString(obj) {
     const redirect_uri = document.getElementById('redirect_uri').value;
 
     cspUrl.searchParams.set('scope', scope.options[scope.selectedIndex].text);
-    cspUrl.searchParams.set('prompt', prompt.options[prompt.selectedIndex].text);
     cspUrl.searchParams.set('max_age', max_age);
+    if ( prompt.options[prompt.selectedIndex].value != 'empty' ) cspUrl.searchParams.set('prompt', prompt.options[prompt.selectedIndex].text);
     if ( document.getElementById('ui_locales').checked ) cspUrl.searchParams.set('ui_locales', window.location.toString().match(/fr$/) ? 'fr-CA' : 'en-CA');
     if ( document.getElementById('nonce').checked ) cspUrl.searchParams.set('nonce', randomString(32));
     if ( document.getElementById('login_hint').checked ) cspUrl.searchParams.set('login_hint', randomString(32));
