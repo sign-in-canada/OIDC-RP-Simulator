@@ -17,7 +17,8 @@ function setOptionsValues() {
     const scope = localStorage.getItem('scope');
     const prompt = localStorage.getItem('prompt');
     const nonce = localStorage.getItem('nonce');
-    const login_hint = localStorage.getItem('login_hint');
+    const login_hint = localStorage.getItem('login_hint'); 
+    const id_token_hint = localStorage.getItem('id_token_hint');
     const ui_locales = localStorage.getItem('ui_locales');
 
     if ( max_age ) document.getElementById('max_age').value = max_age;
@@ -27,6 +28,8 @@ function setOptionsValues() {
     if ( prompt ) document.getElementById('prompt').value = prompt;
     if ( nonce ) document.getElementById('nonce').checked = (nonce === 'true') ;
     if ( login_hint ) document.getElementById('login_hint').checked = (login_hint === 'true');
+    if ( id_token_hint ) document.getElementById('id_token_hint').checked = (id_token_hint === 'true')
+    else storeVal('id_token_hint', 'true') ;
     if ( ui_locales ) document.getElementById('ui_locales').checked = (ui_locales === 'true');
 
     // store lang_locale: for login page redirection purpose (to the right language)

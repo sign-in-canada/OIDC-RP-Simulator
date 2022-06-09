@@ -138,21 +138,50 @@ export class ServerExpress {
       )
     });
 
-    app.get('/logout/:locale(en|fr)?', (req: RequestWithUserSession, res) => {
+    app.get('/signout', (req: RequestWithUserSession , res) => {
+      res.set('content-type', 'text/html;charset=UTF-8')
+      return res.status(200).send(`
+        <html xmlns="http://www.w3.org/1999/xhtml">
+          <script type="text/javascript">
+            function callLogoutAPI() {
+              const locale = localStorage.getItem('lang_locale');
+              const id_token_hint = localStorage.getItem('id_token_hint');
+              const language = (locale ? locale.substring(0,2) : 'undefined');
+              window.location.replace("/logout/" + language + "/" + id_token_hint);
+            }
+          </script>
+          <body onload="callLogoutAPI()"/>
+        </html>`
+      )
+    });
+
+    app.get('/logout/:locale/:hint', (req: RequestWithUserSession, res) => {
       const provider = req.session.provider
+      let params = {}
 
       if ( !provider ) res.status(400).send('No Session')
       else {
         const strategy = passport._strategy(provider)
         const client = strategy._client
         const locale = req.params.locale
+        const hint = req.params.hint
+        params = {
+          client_id: client.client_id
+        }
+ 
+        if ( hint && hint == 'true' ) {
+          params = {
+            ...params,
+            id_token_hint: req.session.tokenSet.id_token
+          }
+        }
 
         if (locale && req.session) {
           if (!req.session.userinfo) req.session.userinfo = {} 
           req.session.userinfo.locale = locale
         } 
 
-        res.redirect(client.endSessionUrl({ client_id: client.client_id }));
+        res.redirect(client.endSessionUrl( params ));
       } 
     });
 
