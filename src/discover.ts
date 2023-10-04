@@ -1,7 +1,7 @@
-import { Issuer } from "openid-client";
+import { Issuer } from 'openid-client';
 discover();
 
 async function discover() {
-  const issuer = await Issuer.discover("http://localhost:3000");
+  const issuer = await Issuer.discover(process.env.AP);
   console.log(issuer);
 }
