@@ -1,6 +1,6 @@
 import { ClientAuthMethod } from 'openid-client';
 import 'dotenv/config';
-
+// build
 export const sessionSecret = 'keyboard cattens';
 export const oidc_clients = [
   {
