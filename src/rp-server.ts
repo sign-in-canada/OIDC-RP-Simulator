@@ -8,7 +8,7 @@ import { locales_en, locales_fr } from './locales/translations';
 
 import { OpenIDConnectStrategy } from './strategy';
 
-export const DEFAULT_PORT = process.env.port || 8080;
+export const DEFAULT_PORT = process.env.port || 3100;
 
 interface RequestWithUserSession extends express.Request {
   user?: any,
