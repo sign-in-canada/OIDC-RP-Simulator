@@ -5,5 +5,5 @@ COPY package.json package-lock.json tsconfig.json config.ts ./
 COPY . .
 RUN npm install -g typescript
 RUN npm install
-EXPOSE 3100
+EXPOSE 3000
 CMD ["npm", "start"]
