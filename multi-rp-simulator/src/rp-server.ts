@@ -44,7 +44,9 @@ export class ServerExpress {
     app.set("view engine", "ejs");
 
     setupStrategies();
-
+    app.get('/health', (_req, res) => res.status(200).send('ok'));
+    app.get('/ready',  (_req, res) => res.status(200).send('ok'));
+    
     app.get('/', (req, res) => res.render('index', { ui_config: ui_config }));
 
     app.get('/rpsim/:page/:lang', (req: RequestWithUserSession, res) => {

@@ -4,7 +4,8 @@
   "description": "Source code and configuration for the Sign in Canada OIDC Relying Party Simulator",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/rp-server",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/rp-server.js",
     "nodemon": "nodemon --watch \"src/**\" --ext \"ts,json\"  --exec \"ts-node src/rp-server.ts\"",
     "test": "haibun-cli test",
     "tsc-watch": "tsc --watch",
